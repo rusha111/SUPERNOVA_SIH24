@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Already Exists</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image:url('https://static.vecteezy.com/system/resources/thumbnails/011/545/805/small_2x/abstract-luxury-glowing-lines-curved-overlapping-on-dark-blue-background-template-premium-award-design-free-vector.jpg');
+            background-repeat: no-repeat; /* Prevents repetition */
+    background-size: cover; /* Scales the image to cover the entire background */
+    background-position: center;/* Centers the image in the viewport */
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 20px;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #42014d;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #42014d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #61097e;
+        }
+        .btn:active {
+            background-color: #42014d;
+        }
+        p a {
+            color: #42014d;
+            text-decoration: none;
+        }
+        p a:hover {
+            text-decoration: underline;
+        }
+        .fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>File Already Exists</h2>
+        <table>
+            <tr>
+                <th>File Name</th>
+                <th>File Path</th>
+                <th>File Size (MB)</th>
+                <th>Downloaded On</th>
+            </tr>
+            <tr>
+                <td>{{ file_name }}</td>
+                <td>{{ file_path }}</td>
+                <td>{{ file_size_mb }}</td>
+                <td>{{ download_timestamp }}</td>
+            </tr>
+        </table>
+        <form action="{{ url_for('handle_file_exists') }}" method="post">
+            <input type="hidden" name="file_url" value="{{ file_url }}">
+            <input type="hidden" name="requested_file_name" value="{{ requested_file_name }}">
+            <button type="submit" name="action" value="download_anyway" class="btn">Download Anyway</button>
+            <button type="submit" name="action" value="skip_download" class="btn">Skip Download</button>
+        </form>
+        <p><a href="{{ url_for('download') }}">Back to Download</a></p>
+    </div>
+</body>
+</html>

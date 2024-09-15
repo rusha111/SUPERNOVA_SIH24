@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download File</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background: linear-gradient(135deg, #1c0d8b, #160045);
+            background-image:url('https://static.vecteezy.com/system/resources/thumbnails/011/545/805/small_2x/abstract-luxury-glowing-lines-curved-overlapping-on-dark-blue-background-template-premium-award-design-free-vector.jpg');
+            background-repeat: no-repeat; /* Prevents repetition */
+    background-size: cover; /* Scales the image to cover the entire background */
+    background-position: center;/* Centers the image in the viewport */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            background: #5151513d;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .download-box {
+            flex: 1;
+            padding: 40px;
+            border-radius: 15px;
+            margin-left: 25px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            margin-right: 25px;
+            width: 50%;
+            padding: 30px;
+            background: linear-gradient(135deg,#a91ad096, #800b74ad);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: calc(100% - 16px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus {
+            border-color: #390147;
+            box-shadow: 0 0 5px rgba(57, 1, 71, 0.5);
+            outline: none;
+            transform: scale(1.02);
+        }
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #280132;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #3d074b;
+            transform: translateY(-2px);
+        }
+        .btn:active {
+            background-color: #280132;
+        }
+        .message {
+            color: #ffffff;
+            font-size: 20px;
+            margin-top: 15px;
+            text-align: center;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .image-box {
+           /* width: 50%;
+            background: #f0f4f700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;*/
+            flex: 1;
+            background: #00000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-left: 1px solid #e0e0e0;
+        }
+        .image-box img {
+            max-width: 50%;
+            height: auto;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="download-box">
+            <h2>Download File</h2>
+            <form action="{{ url_for('download') }}" method="post">
+                <div class="form-group">
+                    <label for="file_url">Link of the site from where the files to be downloaded:</label>
+        <input type="text" id="file_url" name="file_url" required>
+                </div>
+                <div class="form-group">
+                    <label for="file_name">File Name:</label>
+                    <input type="text" id="file_name" name="file_name" required>
+                </div>
+                <button type="submit" class="btn">Download</button>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="message">
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            </form>
+            <div class="footer">
+                <p><a href="{{ url_for('logout') }}">Logout</a></p>
+            </div>
+        </div>
+        <div class="image-box">
+            <img src="https://i.pinimg.com/originals/9b/8a/84/9b8a84a649b47a70b3ea0ae1f0b6c3b8.png" alt="Animated Image">
+        </div>
+    </div>
+</body>
+</html>
